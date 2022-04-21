@@ -6,9 +6,9 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 //we have 3 things in THREE.js
-//1. Scene
-//2. Camera
-//3. Renderer
+//1. Scene -> where we put all our objects
+//2. Camera -> where we look at the scene
+//3. Renderer -> what we see
 
 //* initial setup
 //scene
@@ -25,11 +25,15 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 camera.position.setZ(30)
-camera.position.setX(-3)
+// camera.position.setX(-3)
+// camera.position.setY(-30)
 
 renderer.render(scene, camera)
 
-//basic shape
+/**
+ * SHAPES
+ */
+//a donut
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100)
 
 //material = color and texture
@@ -38,23 +42,41 @@ const geometry = new THREE.TorusGeometry(10, 3, 16, 100)
 const material = new THREE.MeshStandardMaterial({ color: 0xFF6347 })
 
 const torus = new THREE.Mesh(geometry, material)
-
+torus.position.z = -40
+torus.position.x = -30
+torus.position.y = -10
 scene.add(torus)
 
-//let's light up the scene!
+/**
+ * cylinder
+ */
+const cylinderGeometry = new THREE.CylinderGeometry(0.5, 0.7, 10, 32)
+const cylinderMaterial = new THREE.MeshStandardMaterial({ color: 0xFC1 })
+
+const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial)
+cylinder.position.z = -80
+cylinder.position.y = -5
+cylinder.position.z = -5
+scene.add(cylinder)
+
+
+/**
+ * LIGHTING
+ */
 const pointLight = new THREE.PointLight(0xFFFFFF)
 pointLight.position.set(5, 5, 5)
 
-const ambientLight = new THREE.AmbientLight(0xffffff)
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
 scene.add(ambientLight, pointLight)
 
-// //due to the complexity of shapes and lights, we need to use a helper
+// //it shows where the light is
 // const lightHelper = new THREE.PointLightHelper(pointLight)
+// //it shows a bidimensional grid
 // const gridHelper = new THREE.GridHelper(200, 50)
 // scene.add(lightHelper, gridHelper)
 
-// //✨ drag and scroll magic ✨
-// const controls = new OrbitControls(camera, renderer.domElement)
+//✨ drag and scroll magic ✨
+const controls = new OrbitControls(camera, renderer.domElement)
 
 //star
 function addStar() {
@@ -72,7 +94,7 @@ function addStar() {
 let nStars = 200
 Array(nStars).fill().forEach(addStar)
 
-//sfondo
+//background
 const spaceTexture = new THREE.TextureLoader().load('assets/jeremy-thomas-4dpAqfTbvKA-unsplash.jpg')
 scene.background = spaceTexture
 
@@ -86,15 +108,16 @@ const frank = new THREE.Mesh(
 
 scene.add(frank)
 
-frank.position.z = -5;
-frank.position.x = 2;
+frank.position.z = -10;
+frank.position.x = 20;
+frank.position.y = 10;
 
 //scroll animation
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top
 
-  frank.rotation.y += 0.01
-  frank.rotation.x += 0.01
+  frank.rotation.y += 0.02
+  frank.rotation.x += 0.02
 
   camera.position.z = t * -0.01;
   camera.position.x = t * -0.0002;
@@ -102,7 +125,7 @@ function moveCamera() {
 }
 
 document.body.onscroll = moveCamera
-moveCamera()
+// moveCamera()
 
 //to actually see the shape, we need to render it
 // renderer.render(scene, camera)
@@ -115,9 +138,21 @@ function animate() {
   torus.rotation.y += 0.005
   torus.rotation.z += 0.01
 
-  // controls.update()
+  cylinder.rotation.x += 0.01
+  cylinder.rotation.y += 0.005
+  cylinder.rotation.z += 0.01
+
+  //✨ /*drag and*/ scroll magic ✨
+  controls.update()
 
   renderer.render(scene, camera)
 }
 
 animate()
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight
+  camera.updateProjectionMatrix()
+
+  renderer.setSize(window.innerWidth, window.innerHeight)
+})
