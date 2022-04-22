@@ -95,11 +95,11 @@ let nStars = 200
 Array(nStars).fill().forEach(addStar)
 
 //background
-const spaceTexture = new THREE.TextureLoader().load('./jeremy-thomas-4dpAqfTbvKA-unsplash.jpg')
+const spaceTexture = new THREE.TextureLoader().load('jeremy-thomas-4dpAqfTbvKA-unsplash.jpg')
 scene.background = spaceTexture
 
 //avatar
-const frankTexture = new THREE.TextureLoader().load('./profile-pic.jpg')
+const frankTexture = new THREE.TextureLoader().load('profile-pic.jpg')
 
 const frank = new THREE.Mesh(
   new THREE.BoxGeometry(5, 5, 5),
