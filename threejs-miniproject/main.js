@@ -1,4 +1,6 @@
 import './style.css'
+import './frank.jpg'
+import './jeremy-thomas-4dpAqfTbvKA-unsplash.jpg'
 
 import * as THREE from 'three'
 
