@@ -56,7 +56,7 @@ const cylinderMaterial = new THREE.MeshStandardMaterial({ color: 0xFC1 })
 const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial)
 cylinder.position.z = -80
 cylinder.position.y = -5
-cylinder.position.z = -5
+cylinder.position.z = -6
 scene.add(cylinder)
 
 
