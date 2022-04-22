@@ -44,7 +44,7 @@ const material = new THREE.MeshStandardMaterial({ color: 0xFF6347 })
 const torus = new THREE.Mesh(geometry, material)
 torus.position.z = -40
 torus.position.x = -30
-torus.position.y = -10
+torus.position.y = 10
 scene.add(torus)
 
 /**
