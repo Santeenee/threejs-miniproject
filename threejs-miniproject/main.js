@@ -1,6 +1,6 @@
 import './style.css'
 import backgroundUrl from './jeremy-thomas-4dpAqfTbvKA-unsplash.jpg'
-import profilePicUrl from './profile-pic.jpg'
+// import profilePicUrl from './profile-pic.jpg'
 import './credits.html'
 
 import * as THREE from 'three'
@@ -98,7 +98,7 @@ const spaceTexture = new THREE.TextureLoader().load(backgroundUrl)
 scene.background = spaceTexture;
 
 //avatar
-const frankTexture = new THREE.TextureLoader().load(profilePicUrl)
+const frankTexture = new THREE.TextureLoader().load('./profile-pic.jpg')
 const frank = new THREE.Mesh(
   new THREE.BoxGeometry(5, 5, 5),
   new THREE.MeshBasicMaterial({ map: frankTexture })
