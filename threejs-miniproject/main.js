@@ -14,13 +14,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 //3. Renderer -> what we see
 
 //* initial setup
-//scene
 const scene = new THREE.Scene()
-
-//camera (most common camera = perspective camera)
+//(most common camera = perspective camera)
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-
-//renderer
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg')
 })
