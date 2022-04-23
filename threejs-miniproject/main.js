@@ -1,6 +1,6 @@
 import './style.css'
-import profilePicUrl from './profile-pic.jpg'
-import backgroundUrl from './jeremy-thomas-4dpAqfTbvKA-unsplash.jpg'
+import profilePicUrl from 'profile-pic.jpg'
+import backgroundUrl from 'jeremy-thomas-4dpAqfTbvKA-unsplash.jpg'
 
 import * as THREE from 'three'
 
