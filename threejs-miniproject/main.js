@@ -98,7 +98,7 @@ const spaceTexture = new THREE.TextureLoader().load(backgroundUrl)
 scene.background = spaceTexture;
 
 //avatar
-const frankTexture = new THREE.TextureLoader().load('./profile-pic.jpg')
+const frankTexture = new THREE.TextureLoader().load('profile-pic.jpg')
 const frank = new THREE.Mesh(
   new THREE.BoxGeometry(5, 5, 5),
   new THREE.MeshBasicMaterial({ map: frankTexture })
